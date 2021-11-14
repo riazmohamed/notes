@@ -5,7 +5,7 @@
   * [Variables as pointers](#variables-as-pointers)
   * [Variable Shadowing](#variable-shadowing-example)
   * [Object Passing Variable as pointers examples](#object-passing-and-variables-as-pointers-examples)
-  * [Object Mutability and mutating methods examples](#object-mutability-and-mutating-methods-examples)
+  * [Object Mutability and mutating methods examples](#object-mutability-and-mutating-methods-example)
   * [Each, Map and Select examples](#each-map-and-select)
   * [Other collection methods examples](#other-collection-methods)
   * [Truthiness Example](#truthiness-example)
