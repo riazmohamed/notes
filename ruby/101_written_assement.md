@@ -189,6 +189,8 @@ This example demonstrates the  **Variable scoping rules in Ruby during the metho
 
 In line 1 local variable `a` is initialized to the string `Bob`. In line 2 we are calling the `times` method on the `integer` object `5`; the given block iterates 5 times passing in values from zero to 5 - 1 to the block parameter `x`.  In line 4 the local varible `a` initialized in the first instance to string `Bill`. For the rest of the iteration `a` is reassigned to `Bill`.  In `line 5` when the `Kernel#p` method is called and the object referenced by the local variable `a` is passed as an **argument** to it. This return and output `Bill`.
 
+[Back to Top](#topics)
+
 ---
 
 ### Variable Shadowing Example
@@ -256,6 +258,8 @@ This example will output `"animal"`.
 This example demonstrates **Variable Shadowing**. **Variable shadowing** occurs when both the **block parameter** and the **local variable defined in the outer scope** have the **same name**. When this happens the **block**, which is passed as an **argument** to the **method invocation**, *hides the local variable that was defined outside of the block*. This can be overcome by assigning different names.
 
 In line 1 the local variable `animal` is **initialized** to the string object `"dog"`. In `line 3` the `loop` method is invoked and the `do..end` following the `loop` method invocation defines the **block**. Within the block since the block parameter and the  local variable defined in the outer scope have the same name a new variable `animal` is initialized in line 3. In line 4 `animal` is **reassigned** to the string `cat`. In line 5 ew use the `break` keyword to break out of the loop. In  `line 8` the `Kernel#puts` method is called and the object referenced by the local variable `animaml` is passed as an **argument** to it. This will output the **string representation** of the **String** object `"dog"` and **return** `nil`.
+
+[Back to Top](#topics)
 
 ---
 
@@ -496,6 +500,8 @@ In  `line 7` the `Kernel#puts` method is called and the object referenced by the
 
 In  `line 8` the `Kernel#puts` method is called and the object referenced by the local variable `arr2` is passed as an **argument** to it. This will output `A, B, C` the **string representation** of the elements, in seperate lines, within the **Array** object `['A', 'B', 'C']` and **return** `nil`.
 
+[Back to Top](#topics)
+
 ------------
 
 ### Object Mutability and Mutating Methods example
@@ -669,6 +675,8 @@ puts names
 ```
 
 ​	On line 5 the local variable `names` is **initialized** to the *Array* object `['bob', 'kim']`. In line 6 the `add_name` method is invoked and is passed two arguments to it `names` and the String `'jim'`. Line 1 - 3 the `add_name` method is defined. Within the method definition the object referenced by the `name` local varible is assigned to local variable `arr` and the String `'jim'` is assigned to the method local variable  `name`. On line 2 the destructive method `<<` is invoked on the lcoal variable `arr` and the object referenced by `name` is passed as an argument to it . This Mutates the object. So now `arr` is `["bob", "kim", "jim"]`. `arr` is now reassigned to `["bob", "kim", "jim"]` hence `arr` binds to the same object. On `line 7` the `Kernel#puts` method is called and the object referenced by the local variable `names` is passed as an **argument** to it. This outputs the elements of the Array object in seperate lines as `'bob', 'kim', 'jim'`. Here the example demonstrates the concept of **mutability** of objects using a destructive method call. When an operator within the method mutates the caller, it will modify the original object.
+
+[Back to Top](#topics)
 
 ---
 
@@ -857,6 +865,8 @@ The block is defined by the curley braces `{}`along side the `each` method invoc
 
 For every iteration the `each` method passes the current element as an argument to the block which is assigned to the block parameter `num`. On  `line 2` the `Kernel#puts` method is called and the object referenced by the local variable `num` is passed as an **argument** to it. This will output the **string representation** of the **Integer** object `1, 2 and 3` on seperate lines. 
 
+[Back to Top](#topics)
+
 ---
 
 ### Other collection methods
@@ -964,6 +974,8 @@ On line 5 the `p` method is invoked and the object referenced by the local varia
 
 On line 6 the `p` method is invoked and the object referenced by the local variable `even` is passed as an argument. This will output `[2]` and return `[2]`
 
+[Back to Top](#topics)
+
 ---
 
 ### Truthiness Example
@@ -1004,3 +1016,4 @@ On line 5 the local variable `var` is **initialized** to the return value of inv
 
 ---
 
+[Back to Top](#topics)
