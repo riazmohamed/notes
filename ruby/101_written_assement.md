@@ -1,6 +1,16 @@
 # Notes for assessment - RB109 written
 
-## <u>Description</u>
+* ### List
+
+  * [Variables as pointers](#variables-as-pointers)
+  * [Variable Shadowing](#variable-shadowing-example)
+  * [Object Passing Variable as pointers examples](#object-passing-and-variables-as-pointers-examples)
+  * [Object Mutability and mutating methods examples](#object-mutability-and-mutating-methods-examples)
+  * [Each, Map and Select examples](#each-map-and-select)
+  * [Other collection methods examples](#other-collection-methods)
+  * [Truthiness Example](#truthiness-example)
+
+## <u>Description and vocabulary</u>
 
 #### Initialization
 
@@ -420,7 +430,7 @@ In line 1 the local variable `animal` is **initialized** to the string object `"
 
 ---
 
-### Object Passing/Variables As Pointers Examples
+### Object Passing and Variables As Pointers Examples
 
 ###### Example 1
 
@@ -659,7 +669,7 @@ In  `line 8` the `Kernel#puts` method is called and the object referenced by the
 
 ------------
 
-### Object Mutability/Mutating Methods example
+### Object Mutability and Mutating Methods example
 
 ###### Example 1
 
@@ -733,7 +743,7 @@ here `s` points to `"HELLO!"` and `t` to `"HELLO!"`
 
 In line 6 the local variable `s` is **initialized** to the string object `"hello"`.In `line 7` the `fix` method is invoked and the String object `'hello'` referenced by `s` is passed as an argument to it. In the method definition the method parameter `value` is assigned to the String object `'hello'` and thus made available to the method body as a local variable. Now `s` and `value` points to `'hello'` in memory space. In line 2  the destructive method `upcase!` is called on the object referenced by `value` which mutates the object referenced by `s` and `value` to `HELLO`. `value` is then reassigned to the return value of `value.upcase!`. Hence it binds to the same object.  Now `s` and `value` points to `'HELLO'` in memory space. . In line 3 the destructive method `concat` is called on the object referenced by `value` and an argument `!` is passed to it which mutates the object referenced by `s` and `value` to `HELLO`!.  In Ruby methods will implicity return the last evaluated expression unless the `return` keyword is used to explicitly. Therefore `fix` will return `"HELLO!"` In line 8 the local variable `t` is initialized to the return value of `fix`. So now `t` and `s` points to the same string object `"HELLO!"`  
 
-###### Example 5 --- doubt
+###### Example 5 
 
 What does the following code return? What does it output? Why? What concept does it demonstrate? What values do `s` and `t` have? Why?
 
@@ -773,7 +783,7 @@ In line 2  the destructive method `String#<<` is called on the object referenced
 
 Here the example demonstrates the concept of **mutability** of objects using a destructive method call.
 
-###### Example 7 --------- attempt later
+###### Example 7 
 
 What does the following code return? What does it output? Why? What concept does it demonstrate?
 
@@ -833,7 +843,7 @@ puts names
 
 ---
 
-### Each, Map, Select Examples
+### Each, Map and Select
 
 ###### Example 1
 
@@ -1020,7 +1030,7 @@ For every iteration the `each` method passes the current element as an argument 
 
 ---
 
-### Other collection methods Examples
+### Other collection methods
 
 What does the following code return? What does it output? Why? What concept does it demonstrate?
 

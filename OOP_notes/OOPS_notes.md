@@ -1,13 +1,11 @@
 ## Definitons
 
-### What is OOP? 
-
-### Why was OOP created 
+### What is OOP? Why was OOP created 
 
 * OOP was created to reduce dependencies.
 * Programmers wanted to created a way to section of certain areas of code and to work and manipulate them without affecting the rest of the code.
 * Helps us to think in a more abstract fasion about the code currently written.
-* It was created to keep the code `DRY` (Don't Repeat Yourself). That is it helps in preventing duplication of the code. 
+* It was created to keep the code `DRY` (Don't Repeat Yourself). That is it helps in preventing duplication of the code.
 * We are able to build application at a faster pace due to large code reusability from  pre-written code.
 * Easier to manage the complexity of the software.
 * Easier to conceptualize objects as real life objects.
@@ -60,13 +58,13 @@ These are variables which start with the `@` (example: *@instance_variable*) and
 
 #### Uninitialized Instance Variables
 
-In Ruby uninitialized instance variables always returns `nil`  when we try to access them through the getter method. When we try to access an uninitialised local variable  it will raise an error. 
+In Ruby uninitialized instance variables always returns `nil`  when we try to access them through the getter method. When we try to access an uninitialised local variable  it will raise an error.
 
 #### Instance Methods
 
-Instance methods are the behaviours or functionality available to the objects or the instance of the class. They are defined within the classes from which the objects are derived from. Instance variables can be accessed and exposed by the instance methods. Instance variables exists as long as the instance of the class exists and it perishes if the object perishes. 
+Instance methods are the behaviours or functionality available to the objects or the instance of the class. They are defined within the classes from which the objects are derived from. Instance variables can be accessed and exposed by the instance methods. Instance variables exists as long as the instance of the class exists and it perishes if the object perishes.
 
-note :- Generally it is a good practice in Ruby to reassign the instance variables using the setter method. This is because the getter/setter methods are much easier to reference if we ever need to retrieve or modify the state of the object as we can make changes in just one place. 
+note :- Generally it is a good practice in Ruby to reassign the instance variables using the setter method. This is because the getter/setter methods are much easier to reference if we ever need to retrieve or modify the state of the object as we can make changes in just one place.
 
 ```ruby
 def instance_methods(data) # defining an instance method
@@ -103,7 +101,7 @@ class Person
   end
 end
 
-p Person.new.instance_method 
+p Person.new.instance_method
 # => "From the instance method"
 ```
 
@@ -123,14 +121,14 @@ Person.class_method # invoking the class method
 
 ##### Getter methods
 
-Getter methods are read-only methods which are used to access the value referenced by the instance variable. 
+Getter methods are read-only methods which are used to access the value referenced by the instance variable.
 
 ```ruby
 class Person
   def initialize(name)
     @name = name
   end
-  
+
   # getter method
   def	name
     @name
@@ -150,12 +148,12 @@ class Person
   def initialize(name)
     @name = name
   end
-  
+
   # getter method
   def	name
     @name
   end
-  
+
   # setter method
   def name=(input)
     @name = input
@@ -171,38 +169,38 @@ p riaz.name # => "Another name"
 
 Note:- generally it is a good practice in Ruby to reassign the instance variables using the setter method. This is because the getter/setter methods are much easier to reference if we ever need to retrieve or modify the state of the object as we can make changes in just one place. If you try to access an uninitialized instance variable it always returns `nil`.
 
-##### Getter method for privacy 
+##### Getter method for privacy
 
-It is safer to invoke a setter method than to explicitly call an instance variable because we can expose sensitve data or might accidentaly modify the value it references. 
+It is safer to invoke a setter method than to explicitly call an instance variable because we can expose sensitve data or might accidentaly modify the value it references.
 
 ```ruby
 class Student
-  
+
   def initialize(name, score)
     @name = name
     @score = score
   end
-  
+
   def get_grades
     puts "#{name} has the grade #{finding_rank}"
   end
-  
+
   private
   attr_reader :name, :score
-  
+
   def finding_rank
     answer = case score
               when 85..100 then "Merit"
               when 80..84 then "Distinction"
               when 59..79 then "Pass"
-              else 
+              else
                 "Fail"
              end
     answer            
   end
-  
+
 end
-      
+
 bob = Student.new("Bob", 85)
 bob.get_grades
 ```
@@ -223,28 +221,28 @@ The accessor methods takes symbols as arguments which it uses to create getter a
 
 #### Fake Operators
 
-Many operators in Ruby are actually methods inherited from another class. Due to this we can override these methods and have our own implementation within the inheriting sub classes. As a general rule of thumb the methods in this case the fake operators should behave in a way simillar to the original methods in order to avoid unexpected/undesired results. 
+Many operators in Ruby are actually methods inherited from another class. Due to this we can override these methods and have our own implementation within the inheriting sub classes. As a general rule of thumb the methods in this case the fake operators should behave in a way simillar to the original methods in order to avoid unexpected/undesired results.
 
 ### Method access Control
 
-In Ruby the method access control is implemented by the use of public, private and the protected access modifiers. 
+In Ruby the method access control is implemented by the use of public, private and the protected access modifiers.
 
 ##### public methods:
 
- By default all the instance methods within the class are public methods apart from the constructor method `initialize` which is a private method. Public methods can be accessed from within the class and also from outside of the class. If one knows the class name or the object name then we can access these methods. 
+ By default all the instance methods within the class are public methods apart from the constructor method `initialize` which is a private method. Public methods can be accessed from within the class and also from outside of the class. If one knows the class name or the object name then we can access these methods.
 
 ##### private methods
 
-Private methods are methods that are accessible within the class but is not available outside of the class to the rest of the program. They are available to one instance of the class at any given time. 
+Private methods are methods that are accessible within the class but is not available outside of the class to the rest of the program. They are available to one instance of the class at any given time.
 
 ```ruby
 class Person
   def money_available
     "You have £#{account_balance} in your account"
   end
-  
+
   private
-  
+
   def account_balance
     5000
   end
@@ -262,13 +260,13 @@ class Student
   def initialize(grade)
     @grade = grade
   end
-  
+
   def >(other)
-    grade > other.grade 
+    grade > other.grade
   end
-  
+
   protected
-  
+
   attr_reader :grade
 end
 
@@ -292,7 +290,7 @@ when to use class vs interface inheritance.
 * modules have a `has-a` relationship hence they are used for namespacing and grouping commom behaviours to be shared.
 * Classes have a `is-a` relationship hence it is useful for creating objects.
 
-A subclass inherits the behaviours from a superclass. The subclass is the derived class and the super class is the base class. The superclass has a larger reusability and the subclass has an extended or refined implementation. This reduces complexity of the code and makes it reusable. Class Inheritance displays `Is - A` relationship. 
+A subclass inherits the behaviours from a superclass. The subclass is the derived class and the super class is the base class. The superclass has a larger reusability and the subclass has an extended or refined implementation. This reduces complexity of the code and makes it reusable. Class Inheritance displays `Is - A` relationship.
 
 ```ruby
 class Mammal # superclass
@@ -304,7 +302,7 @@ end
 
 ##### Interface Inheritance - modules
 
-In Ruby multiple inheritance is acheived by mixin modules. The inheritance achieved through mixing in modules are known as ***Interface Inheritance***. We mix in a behaviour from a module  using the `include` method and passing in the name of the module as an argument to it. Modules are used as containers for grouping common methods and `namespacing`. Grouping simillar or related classes within a module is known as `namespacing`.  Interface inheritance have a `has - a` relationship. Eg. The Dog has a behaviour(.i.e, a method). Hence modules are useful for grouping common methods from classes that are not related hierarchially. 
+In Ruby multiple inheritance is acheived by mixin modules. The inheritance achieved through mixing in modules are known as ***Interface Inheritance***. We mix in a behaviour from a module  using the `include` method and passing in the name of the module as an argument to it. Modules are used as containers for grouping common methods and `namespacing`. Grouping simillar or related classes within a module is known as `namespacing`.  Interface inheritance have a `has - a` relationship. Eg. The Dog has a behaviour(.i.e, a method). Hence modules are useful for grouping common methods from classes that are not related hierarchially.
 
 ```ruby
 module Swimmable
@@ -351,7 +349,7 @@ p Human.ancestors
 
 ##### Super
 
-Super is a keyword used by Ruby to invoke a method with the same name within the method lookup path. When we invoke a method which has a super keyword, Ruby looks in the method lookup path to find another method with the same name. Ruby invokes the method when it finds it. 
+Super is a keyword used by Ruby to invoke a method with the same name within the method lookup path. When we invoke a method which has a super keyword, Ruby looks in the method lookup path to find another method with the same name. Ruby invokes the method when it finds it.
 
 The super keywords can also take arguments. But by default it will pass all the arguments passed into the calling method to the other method with the same name. In order to avoid this we can call the super keyword with a parenthesis such as `super()`.
 
@@ -359,7 +357,7 @@ The super keywords can also take arguments. But by default it will pass all the 
 
 The `self` keyword is an explicit caller. The `self` keyword represents the `class` or the `object` of a class depending upon the scope where it is used.  
 
-In `line xxx - xxx` we are using the `self` keyword while defining a ***method***. In line xxx the `self` in the expression `self.xxxx` represents the class `Person`. Hence this is a ***class method***. Within the class method the `self` keyword also represents the class `xxxx`. 
+In `line xxx - xxx` we are using the `self` keyword while defining a ***method***. In line xxx the `self` in the expression `self.xxxx` represents the class `Person`. Hence this is a ***class method***. Within the class method the `self` keyword also represents the class `xxxx`.
 
 In `line xxx - xxx` the self keyword is used within the setter instance method `xxxx`. Within an instance method the `self` keyword is the **calling object** and hence in `line xxx`  it represents the object `xxx`, which is an instance of the `xxx` class.
 
@@ -367,7 +365,7 @@ In `line xxx - xxx` the self keyword is used within the setter instance method `
 
 How can we access constants from outside of the class?
 
-​		In order to access the constants from outside of the class where it is defined we will have to use the `namespace resolution operator`. This is in the format `Class::CONSTANT`. The namespace resolution operator is used between the class name and the constant. 
+​		In order to access the constants from outside of the class where it is defined we will have to use the `namespace resolution operator`. This is in the format `Class::CONSTANT`. The namespace resolution operator is used between the class name and the constant.
 
 #### Lexical scope
 
@@ -379,12 +377,12 @@ How can we access constants from outside of the class?
 
 Polymorphism are broadly classed into two types
 
-* Polymorphism through inheritance 
+* Polymorphism through inheritance
 * Polymorphism through Duck Typing
 
 When the subclass inherits behaviour from one of its superclass because it could not find the method in the subclass then polymorphism occurs. This type of polymorphism is known as `Polymorphism through Inheritance` as we are inhering the behaviours. Since method overriding is also a type of inheritance this is also  `Polymorphism through Inheritance` .
 
-When object of unrelated classes respond to the invocation of the instance method with the same name then this is known as `Polymorphism through Duck Typing`. 
+When object of unrelated classes respond to the invocation of the instance method with the same name then this is known as `Polymorphism through Duck Typing`.
 
 ### Encapsulation
 
@@ -399,7 +397,7 @@ Ruby creates objects and exposes the interfaces to interact with those objects. 
 ```ruby
 class Person
   attr_reader :name
-  
+
   def set_name
     @name = 'Bob'
   end
@@ -431,16 +429,16 @@ class Dog
 end
 
 teddy = Dog.new
-p teddy.swim 
+p teddy.swim
 ```
 
-In Ruby uninitialized instance variables always returns `nil`  when we try to access them through the getter method. When we try to access an uninitialised local variable  it will raise an error. 
+In Ruby uninitialized instance variables always returns `nil`  when we try to access them through the getter method. When we try to access an uninitialised local variable  it will raise an error.
 
 In line 15 a local variable `teddy` is instantiated to a new object by calling the `::new` class method on the class `Dog`. On line 16 the `swim` instance method is invoked on the object `teddy` which outputs `nil`. Within the `swim` method the expression `@can_swim` evaluates to `false` because the @can_swim instance method is never initialized when `teddy` is instantiated. Therefore on line 11 `"swimming!" if @can_swim` is the last evaluated expression within the method `swim`, nothing is evalutated and hence the `swim` method returns `nil`.
 
 ### Example 3 - constant scope
 
-\# What is output and why? What does this demonstrate about constant scope? What does `self` refer to in each of the 3 methods above? 
+\# What is output and why? What does this demonstrate about constant scope? What does `self` refer to in each of the 3 methods above?
 
 ```ruby
 module Describable
@@ -455,7 +453,7 @@ class Shape
   def self.sides
     self::SIDES
   end
-  
+
   def sides
     self.class::SIDES
   end
@@ -468,7 +466,7 @@ end
 class Square < Quadrilateral; end
 
 p Square.sides # 4
-p Square.new.sides # 4 
+p Square.new.sides # 4
 p Square.new.describe_shape # 4
 ```
 
@@ -476,7 +474,7 @@ When Ruby looks for a constant it first looks for the constant in the class whic
 
 On line 25 we are invoking the class method `sides` on the class `Square` this will print the integer `4`. This is because Ruby looks for the class method in the method lookup path of the `Square` class and finds it in the `Shape` class and then resolves the expression `self::SIDES` which is the same as `Square::SIDES`. Ruby looks for `SIDES` in the *method lookup path* and finds it in the `Quadilateral` class.
 
-On line 26 the `sides` instance method is called on the new instance of the `Square` class this will output the Integer `4`. This is because Ruby looks for the method in the method lookup path and finds  `sides` instance method in the `Shape` class.  The last expression within the method is `self.class::SIDES` which equates to `Square.new.class::SIDES`. As before the value referenced by `SIDES` is `4`. 
+On line 26 the `sides` instance method is called on the new instance of the `Square` class this will output the Integer `4`. This is because Ruby looks for the method in the method lookup path and finds  `sides` instance method in the `Shape` class.  The last expression within the method is `self.class::SIDES` which equates to `Square.new.class::SIDES`. As before the value referenced by `SIDES` is `4`.
 
 On `line 27`, we invoke the `describe_shape` instance method on a `Square` object. Since the `SIDES` constant is referenced within this method without a qualifying namespace, Ruby checks the enclosing module - the `Describable` module, to see if it defines the constant. Since it doesn't find it, Ruby raises a `NameError` error. Within the `describe_shape` method, `self` refers to the `Square` object.
 
@@ -487,16 +485,16 @@ On `line 27`, we invoke the `describe_shape` instance method on a `Square` objec
 ```ruby
 class AnimalClass
   attr_accessor :name, :animals
-  
+
   def initialize(name)
     @name = name
     @animals = []
   end
-  
+
   def <<(animal)
     animals << animal
   end
-  
+
   def +(other_class)
     animals + other_class.animals
   end
@@ -504,7 +502,7 @@ end
 
 class Animal
   attr_reader :name
-  
+
   def initialize(name)
     @name = name
   end
@@ -567,9 +565,9 @@ class GoodDog
 end
 
 
-sparky = GoodDog.new('Spartacus', '12 inches', '10 lbs') 
+sparky = GoodDog.new('Spartacus', '12 inches', '10 lbs')
 sparky.change_info('Spartacus', '24 inches', '45 lbs')
-puts sparky.info 
+puts sparky.info
 # => Spartacus weighs 10 lbs and is 12 inches tall.
 ```
 
@@ -587,7 +585,7 @@ Here the `self` keyword references the calling object. Hence the setter methods 
 
 ### Example 6
 
-\# In the code above, we hope to output `'BOB'` on `line 16`. Instead, we raise an error. Why? How could we adjust this code to output `'BOB'`? 
+\# In the code above, we hope to output `'BOB'` on `line 16`. Instead, we raise an error. Why? How could we adjust this code to output `'BOB'`?
 
 ```ruby
 class Person
@@ -596,14 +594,14 @@ class Person
   def initialize(name)
     @name = name
   end
-  
+
   def change_name
     name = name.upcase
   end
 end
 
 bob = Person.new('Bob')
-p bob.name 
+p bob.name
 bob.change_name
 p bob.name
 ```
@@ -616,7 +614,7 @@ def change_name
 end
 ```
 
-After the above modification the line 16 will output `"BOB"`. 
+After the above modification the line 16 will output `"BOB"`.
 
 ### Example 7
 
@@ -681,17 +679,17 @@ bruno = GoodDog.new("brown")
 p bruno
 ```
 
-`line 17` outputs the object referenced by the local variable `bruno` which is an instance of the `GoodDog` class instantiated on `line 16`.  The state of the object has two instance variables `@name and @color`. This is because within the constructor method `initialize` within the `GoodDog` class we have the `super` keyword which looks for the first occurance of the method with the same in the superclasses and invokes it. In this case it invokes the `initialize` method from the `Animal` class and passes all the arguments passed in to the constructor method in the `GoodDog` class. Thereby two instance variables `@name = brown` and `@color = brown`  are initialized. 
+`line 17` outputs the object referenced by the local variable `bruno` which is an instance of the `GoodDog` class instantiated on `line 16`.  The state of the object has two instance variables `@name and @color`. This is because within the constructor method `initialize` within the `GoodDog` class we have the `super` keyword which looks for the first occurance of the method with the same in the superclasses and invokes it. In this case it invokes the `initialize` method from the `Animal` class and passes all the arguments passed in to the constructor method in the `GoodDog` class. Thereby two instance variables `@name = brown` and `@color = brown`  are initialized.
 
 This example demponstrates the following about the `super` keyword
 
-Super is a keyword used by Ruby to invoke a method with the same name within the method lookup path. When we invoke a method which has a super keyword, Ruby looks in the method lookup path to find another method with the same name. Ruby invokes the method when it finds it. 
+Super is a keyword used by Ruby to invoke a method with the same name within the method lookup path. When we invoke a method which has a super keyword, Ruby looks in the method lookup path to find another method with the same name. Ruby invokes the method when it finds it.
 
 The super keywords can also take arguments. But by default it will pass all the arguments passed into the calling method to the other method with the same name. In order to avoid this we can call the super keyword with a parenthesis such as `super()`.
 
 ### Example 9
 
-\# What is output and why? What does this demonstrate about `super`? 
+\# What is output and why? What does this demonstrate about `super`?
 
 ```ruby
 class Animal
@@ -773,7 +771,7 @@ module GoodAnimals
     include Swimmable
     include Danceable
   end
-  
+
   class GoodCat < Animal; end
 end
 
@@ -783,9 +781,9 @@ p good_dog.walk
 
 The method lookup path used when invoking `walk` on `GoodDog` class is [`GoodAnimals::GoodDog, Animal, Walkable]`.
 
-### Example 11 
+### Example 11
 
-\# What is output and why? How does this code demonstrate polymorphism? 
+\# What is output and why? How does this code demonstrate polymorphism?
 
 ```ruby
 class Animal
@@ -818,17 +816,17 @@ end
 
 explaination from Oscar
 
-This code outputs, `"I eat"`, `"I eat plankton."`, and `"I eat kibble."` 
+This code outputs, `"I eat"`, `"I eat plankton."`, and `"I eat kibble."`
 
 This is an example of polymporhism through inheritance in which objects of different types can respond to the same method invocation simply by overriding a method from the superclass.
 
-In this example we define a `Animal` class with a `eat` method.  We also define a `Fish` class and `Dog` class that both subclass from `Animal` where they override the `eat` method that they inherit, and implement their own specialized verson of this method. 
+In this example we define a `Animal` class with a `eat` method.  We also define a `Fish` class and `Dog` class that both subclass from `Animal` where they override the `eat` method that they inherit, and implement their own specialized verson of this method.
 
 Even though every object in the `array_of_animals` array is a different object type, each with their own implementation of the `eat` method, the client code only cares that the objects can respond to the same `eat` method invocation.
 
 ### Example 12
 
-\# We raise an error in the code above. Why? What do `kitty` and `bud` represent in relation to our `Person` object? 
+\# We raise an error in the code above. Why? What do `kitty` and `bud` represent in relation to our `Person` object?
 
 ```ruby
 class Person
@@ -858,7 +856,7 @@ bud = Bulldog.new
 bob.pets << kitty
 bob.pets << bud                     
 
-bob.pets.jump 
+bob.pets.jump
 ```
 
 `line 28` the `pets` getter method returns an `Array` object with elements as the objects of the `Cat and Bulldog` class. Since `Array` class does not have a `jump` instance method defined we get an error when we call the `jump` method on the return value of the `pets` getter method been called on the object referenced by `bob`. In order to fix this issue we will have to call the `jump` instance method on each if the elements of the array as follows
@@ -889,7 +887,7 @@ class Dog < Animal
 end
 
 teddy = Dog.new("Teddy")
-puts teddy.dog_name 
+puts teddy.dog_name
 ```
 
 Uninitialized instance variables always returns `nil` when we try to access them through a getter method.
@@ -898,7 +896,7 @@ In the above example within the `Dog` class there is a constructor method `initi
 
 ### Example 14
 
-\# In the code above, we want to compare whether the two objects have the same name. `Line 11` currently returns `false`. How could we return `true` on `line 11`? 
+\# In the code above, we want to compare whether the two objects have the same name. `Line 11` currently returns `false`. How could we return `true` on `line 11`?
 \# Further, since `al.name == alex.name` returns `true`, does this mean the `String` objects referenced by `al` and `alex`'s `@name` instance variables are the same object? How could we prove our case?
 
 ```ruby
@@ -926,7 +924,7 @@ class Person
   def initialize(name)
     @name = name
   end
-  
+
   def ==(other)
     name == other.name
   end
@@ -942,7 +940,7 @@ Now in `line 15` we are comparing the states of the two objects which have the s
 since `al.name == alex.name` returns `true`,  This does not mean the `String` objects referenced by `al` and `alex`'s `@name` instance variables are the same object. Though they are objects of the same class they are two different objects in memory space. This can be proved by calling the `object_id` method on them as follows
 
 ```ruby
-p al.name.object_id 
+p al.name.object_id
 p alex.name.object_id
 ```
 
@@ -973,7 +971,7 @@ puts bob.name
 
 On `line 13` a local variable `bob` is initialized to the instance of the `Person` object by calling the `new` class method on it. The `::new` method takes an argument String `"Bob"`. This is then assigned to the instance variable `@name`.On `line 8 - 10` a custom `to_s` instance method is defined and within the method definition we have an expression `name.upcase!`. Here we are invoking the getter method `name` and calling a destructive method `upcase!` on it which will permanently modify the object referenced by `@name`. Also `puts` method invocation by default invokes the `to_s` method on the arguments passed to it. Hence on `line 15` the `to_s` custom instance method is invoked and it prints out `"My name is BOB."`. Now the value refereneced by `@name` is modified permanently. Hence l`ine 16` prints `"BOB"`. If we dont want this behaviour then we can call a non destructive method as follows
 
-```ruby 
+```ruby
 def to_s
   "My name is #{name.upcase}."
 end
@@ -989,13 +987,13 @@ class Student
     @name = name
     @grade = grade
   end
-  
+
   def >(other)
     grade > other.grade
   end
 
-  protected 
-  
+  protected
+
   attr_reader :grade
 end
 
@@ -1016,7 +1014,7 @@ class Student
   def initialize(name)
     @name = name
   end
-  
+
   def name
     puts "Hi my name is #{@name.capitalize}"
   end
@@ -1083,7 +1081,7 @@ Adding the `attr_accessor` method to every instance variable in the class will m
 ```ruby
 class Student
   attr_accessor :name, :age
-  
+
   def initialize(name, age)
     @name = name
     @age = age
@@ -1101,7 +1099,7 @@ p student.name # "Mike"
 p student.age  # 50
 ```
 
-In the above example we able to access and change the state of the object from outside of the class. 
+In the above example we able to access and change the state of the object from outside of the class.
 
 ### Example 20 - states and behaviour
 
@@ -1109,14 +1107,14 @@ In the above example we able to access and change the state of the object from o
 
 Objects encapsulate the state and classes define the attributes of the behaviour of the objects. The instance variables track the state of the object. The state of the Object is unique to the object. The behaviours or the methods are what the objects can do. The instance methods can access the instance variable
 
-Classes are basic oulines of what an object is made of. Classes define the attributes and the behaviours of its objects. Common behaviours are grouped within a class. 
+Classes are basic oulines of what an object is made of. Classes define the attributes and the behaviours of its objects. Common behaviours are grouped within a class.
 
 ```ruby
 class Person
   def initialize(name)
     @name = name
   end
-  
+
   def name
     @name
   end
@@ -1143,7 +1141,7 @@ class Person
   end
 end
 
-p Person.new.instance_method 
+p Person.new.instance_method
 # => "From the instance method"
 ```
 
@@ -1159,7 +1157,7 @@ end
 Person.class_method # invoking the class method
 ```
 
-#### 
+####
 
 ### Example 22 - Collabotator objects
 
@@ -1174,16 +1172,16 @@ The following is an example of using collaborator objects .
 ```ruby
 class Person
   attr_reader :name, :pets
-  
+
   def initialize(name)
     @name = name
     @pets = []
   end
-  
+
   def add_pet(obj)
     pets << obj
   end
-    
+
   def display_owner_with_pets
     puts "#{name} pets are:"
     puts pets
@@ -1192,11 +1190,11 @@ end
 
 class Pet
   attr_reader :name
-  
+
   def initialize(name)
     @name = name
   end
-  
+
   def to_s
     name
   end
@@ -1224,7 +1222,7 @@ Objects that are stored as state within another object are also called "collabor
 
 When we work with collaborator objects, they are usually custom objects (e.g. defined by the programmer and not inherited from the Ruby core library); @pet is an example of a custom object. Yet, collaborator objects aren't strictly custom objects. Even the string object stored in @name within bob in the code above is technically a collaborator object.
 
-Collaborator objects play an important role in object oriented design, since they also represent the connections between various actors in your program. 
+Collaborator objects play an important role in object oriented design, since they also represent the connections between various actors in your program.
 
 When working on an object oriented program be sure to consider what collaborators your classes will have and if those associations make sense, both from a technical standpoint and in terms of modeling the problem your program aims to solve.
 
@@ -1261,15 +1259,15 @@ Many operators in Ruby are originally methods. Because of Ruby's syntactical sug
 ```ruby
 class Person
   attr_reader :name
-  
+
   def initialize(name)
     @name = name
   end
-  
+
   def self.name
     self
   end
-  
+
   def change_name=(new_name)
     self.name = new_name
   end
@@ -1279,13 +1277,13 @@ bob = Person.new("Bob")
 p Person.name # => "Person"
 p bob.name # => "Bob"
 
-bob.change_name("Bobby") 
+bob.change_name("Bobby")
 p bob.name # => "Bobby"
 ```
 
 The `self` keyword is an explicit caller. The `self` keyword represents the `class` or the `object` of a class depending upon where it is used.  
 
-In `line 8 - 10` we are using the `self` keyword while defining a ***method***. In line 8 the `self` in the expression `self.name` represents the class `Person`. Hence this is a ***class method***. Within the class method the `self` keyword also represents the class `Person`. 
+In `line 8 - 10` we are using the `self` keyword while defining a ***method***. In line 8 the `self` in the expression `self.name` represents the class `Person`. Hence this is a ***class method***. Within the class method the `self` keyword also represents the class `Person`.
 
 In `line 12 - 14` the self keyword is used within the setter instance method `change_name=(new_name)`. Within an instance method the `self` keyword is the **calling object** and hence in `line 13`  it represents the object `bob`, which is an instance of the `Person` class.
 
@@ -1298,7 +1296,7 @@ class Person
   def initialize(n)
     @name = n
   end
-  
+
   def get_name
     @name
   end
@@ -1315,7 +1313,7 @@ p bob.get_name # => "bob"
 
 Instance variables are variables which start with the `@` (example: *@instance_variable*) and are scoped at the **object level**. The instance variables keep track of the **state** of the object. The state  of an object is the collection of all of its instance variables and the values it references. Instance methods can access instance variables, that is it exposes the value referenced by the instance variable. Instance variables exists as long as the object exists. Once the Object is destroyed then the instance variable perishes along with it.
 
-On line 14 the object `bob` has a state `@name = 'bob'` and on line 15 the object `joe` has the state `@name = "joe"`. This shows that though both the objects are created from the same class `Person` their states are unique to the respective objects. 
+On line 14 the object `bob` has a state `@name = 'bob'` and on line 15 the object `joe` has the state `@name = "joe"`. This shows that though both the objects are created from the same class `Person` their states are unique to the respective objects.
 
 ### Example 26
 
@@ -1323,7 +1321,7 @@ On line 14 the object `bob` has a state `@name = 'bob'` and on line 15 the objec
 
  How do class inheritance and mixing in modules affect instance variable scope? Give an example.
 
-A typical `class inheritance` is where a **subclass** inherits its behaviours from a **superclass**. The subclass is the **derived class** and the superclass is the **base class.** The superclass has a **larger reusability** and the subclass has an **extended or refined implementation**. This reduces complexity of the code and makes it reusable. Class inheritance exhibits an `"Is - A"` relationship. Eg. The Dog *is a* mammal. 
+A typical `class inheritance` is where a **subclass** inherits its behaviours from a **superclass**. The subclass is the **derived class** and the superclass is the **base class.** The superclass has a **larger reusability** and the subclass has an **extended or refined implementation**. This reduces complexity of the code and makes it reusable. Class inheritance exhibits an `"Is - A"` relationship. Eg. The Dog *is a* mammal.
 
 ```ruby
 class Mammal # superclass
@@ -1360,25 +1358,25 @@ puts Dog.new.swim
 
 \# How does encapsulation relate to the public interface of a class?
 
-Ruby creates objects and exposes the interfaces to interact with those objects. Due to this it is possible that the data could be unintentionally modified. Also this can also increase the dependencies between different objects. Ruby enables us to hide the behaviour and its implementation by making it not visible to the rest of the code  in order to reduce dependencies and to prevent the data from being exposed to unwanted parts of the code. This is known as `Encapsulation` and this is acheived through the use of `Method Access Control` or access modifiers which determines if the methods are `public, private or protected`. I ruby all the instance methods are public by default unless we implement method access control. The exception being the constructor method `initialize` which is always private. 
+Ruby creates objects and exposes the interfaces to interact with those objects. Due to this it is possible that the data could be unintentionally modified. Also this can also increase the dependencies between different objects. Ruby enables us to hide the behaviour and its implementation by making it not visible to the rest of the code  in order to reduce dependencies and to prevent the data from being exposed to unwanted parts of the code. This is known as `Encapsulation` and this is acheived through the use of `Method Access Control` or access modifiers which determines if the methods are `public, private or protected`. I ruby all the instance methods are public by default unless we implement method access control. The exception being the constructor method `initialize` which is always private.
 
 Example
 
 ```ruby
 class Student
   attr_reader :name
-  
+
   def initialize(name, age)
     @name = name
     @age = age
   end
-  
+
   def student_age
     age
   end
-  
-  private 
-  
+
+  private
+
   attr_reader :age
 end
 
@@ -1389,7 +1387,7 @@ p bob.student_age  # => 19
 p bob.age          # => NoMethodError
 ```
 
-The above example we have hidden the implementation details of the instance method `age` from being accessed from outside of the class. This was acheive by the use of the `private` method which is an access modifier. Hence the instance method `age` can only accessed from the within the `Student` class. 
+The above example we have hidden the implementation details of the instance method `age` from being accessed from outside of the class. This was acheive by the use of the `private` method which is an access modifier. Hence the instance method `age` can only accessed from the within the `Student` class.
 
 ### Example 28 - to_s
 
@@ -1411,7 +1409,7 @@ sparky = GoodDog.new("Sparky", 4)
 puts sparky
 ```
 
-Line 13 outputs the object referenced by the local variable `sparky` initialized in line 12. The object output consists of the object encoding id and the class name. This is output because when the object is  passed as an argument to the `puts` method it automatically calls the default `to_s` instance method on the argument and prints it. In order to override the default output we can define our own custom implementation of the `to_s` method as shown below. 
+Line 13 outputs the object referenced by the local variable `sparky` initialized in line 12. The object output consists of the object encoding id and the class name. This is output because when the object is  passed as an argument to the `puts` method it automatically calls the default `to_s` instance method on the argument and prints it. In order to override the default output we can define our own custom implementation of the `to_s` method as shown below.
 
 ```ruby
 class GoodDog
@@ -1423,8 +1421,8 @@ class GoodDog
     self.name = n
     self.age  = a * DOG_YEARS
   end
-  
-  def to_s 
+
+  def to_s
     "I am #{name} and I am #{age} years old."
   end
 end
@@ -1453,13 +1451,13 @@ sparky = GoodDog.new("Sparky", 4)
 p sparky
 ```
 
-In this code the instance variables `@name and @age` are initialized within the constructor method `initialize` . Whereas previously the `attr_accessor` methods initialized them. The values referenced by the instance variables `@name` and `@age` are set directly to them. Whereas before they are assigned to the instance variabled using the getter methods `name` and `age`. 
+In this code the instance variables `@name and @age` are initialized within the constructor method `initialize` . Whereas previously the `attr_accessor` methods initialized them. The values referenced by the instance variables `@name` and `@age` are set directly to them. Whereas before they are assigned to the instance variabled using the getter methods `name` and `age`.
 
 ### Example 29 - Accidental method overriding
 
 \# When does accidental method overriding occur, and why? Give an example.
 
-In Ruby all the custom class inherit from the class `Object`. This class has many built in methods as part of the Ruby language. Hence all the methods that are available to the class `Object` are available to all the custom classes as they subclass from the `Object` class. All subclasses can create it own custom implementation for any of the methods provided by the `Object` class through `method overriding by inheritance`. As a general rule of thumb the return value of these fake instance methods should behave in a simillar way to the original instance methods. When we accidentally define an instance method in our custom class  with the same name as that of the methods in the `Object` class `accidental method overriding` occurs. 
+In Ruby all the custom class inherit from the class `Object`. This class has many built in methods as part of the Ruby language. Hence all the methods that are available to the class `Object` are available to all the custom classes as they subclass from the `Object` class. All subclasses can create it own custom implementation for any of the methods provided by the `Object` class through `method overriding by inheritance`. As a general rule of thumb the return value of these fake instance methods should behave in a simillar way to the original instance methods. When we accidentally define an instance method in our custom class  with the same name as that of the methods in the `Object` class `accidental method overriding` occurs.
 
 Example
 
@@ -1481,11 +1479,11 @@ In the above example within the `WhoAmI` class we have a custom implementation f
 
 \# How is Method Access Control implemented in Ruby? Provide examples of when we would use public, protected, and private access modifiers.
 
-In Ruby the method access control is implemented by the use of public, private and the protected access modifiers. In Ruby `encapsulation` is acheived by using the `method access modifiers`. 
+In Ruby the method access control is implemented by the use of public, private and the protected access modifiers. In Ruby `encapsulation` is acheived by using the `method access modifiers`.
 
 ##### public methods:
 
- By default all the instance methods within the class are public methods, apart from the constructor method `initialize` which is a private method. Public methods can be accessed from within the class and also from outside of the class. If one knows the object name and the getter method name then we can access these methods. 
+ By default all the instance methods within the class are public methods, apart from the constructor method `initialize` which is a private method. Public methods can be accessed from within the class and also from outside of the class. If one knows the object name and the getter method name then we can access these methods.
 
 ```ruby
 class Person
@@ -1497,7 +1495,7 @@ end
 Person.new.say_hello # => "Hello!"
 ```
 
-In the above example the  instance method `say_hello` is defined within the class `Person`. Since this is a public method it can be visible from outside of the class. Therefore line 7 prints `"Hello!"` . 
+In the above example the  instance method `say_hello` is defined within the class `Person`. Since this is a public method it can be visible from outside of the class. Therefore line 7 prints `"Hello!"` .
 
 ##### private methods
 
@@ -1508,9 +1506,9 @@ class Person
   def money_available
     puts "You have £#{account_balance} in your account"
   end
-  
+
   private
-  
+
   def account_balance
     5000
   end
@@ -1532,13 +1530,13 @@ class Student
   def initialize(grade)
     @grade = grade
   end
-  
+
   def >(other)
-    grade > other.grade 
+    grade > other.grade
   end
-  
+
   protected
-  
+
   attr_reader :grade
 end
 
@@ -1562,7 +1560,7 @@ class Person
 	def initialize(name)
     @name = name
   end
-  
+
   def speak
     puts "Hi! How are you?"
   end
@@ -1572,7 +1570,7 @@ bob = Person.new("Bob")
 bob.speak #=> "Hi! How are you?"
 ```
 
-A subclass inherits the behaviours from a superclass. The subclass is the derived class and the super class is the base class. The superclass has a larger reusability and the subclass has an extended or refined implementation. This reduces complexity of the code and makes it reusable. Inheritance displays `Is - A` relationship. 
+A subclass inherits the behaviours from a superclass. The subclass is the derived class and the super class is the base class. The superclass has a larger reusability and the subclass has an extended or refined implementation. This reduces complexity of the code and makes it reusable. Inheritance displays `Is - A` relationship.
 
 ```ruby
 class Mammal # superclass
@@ -1582,7 +1580,7 @@ class Dog < Mammal # subclass
 end
 ```
 
-`Modules` are used as containers for housing methods that may be relevant to multiple classes. The collection of the methods within the module can be used in other classes through `mixins`. Unlike `classes` modules do not have any instances. Modules cannot inherit unlike the classes. 
+`Modules` are used as containers for housing methods that may be relevant to multiple classes. The collection of the methods within the module can be used in other classes through `mixins`. Unlike `classes` modules do not have any instances. Modules cannot inherit unlike the classes.
 
 In Ruby multiple inheritance is acheived by mixin modules. The inheritance achieved through mixing in modules are known as ***Interface Inheritance***. The behaviour from a module is mixed in using the `include` method and passing in the name of the module as an argument to it. The modules group common methods, constants and classes within. This is known as `namespacing`. Interface inheritance have a `has - a` relationship. Eg. The Dog has a behaviour(.i.e, a method).
 
@@ -1613,10 +1611,10 @@ What is polymorphism and how can we implement polymorphism in Ruby? Provide exam
 
 Polymorphism are broadly classed into two types
 
-* Polymorphism through inheritance 
+* Polymorphism through inheritance
 * Polymorphism through Duck Typing
 
-When the subclass inherits behaviour from one of its superclass because it could not find the method in the subclass then polymorphism occurs. This type of polymorphism is known as `Polymorphism through Inheritance` as we are inhering the behaviours. 
+When the subclass inherits behaviour from one of its superclass because it could not find the method in the subclass then polymorphism occurs. This type of polymorphism is known as `Polymorphism through Inheritance` as we are inhering the behaviours.
 
 ```ruby
 class Vehicle
@@ -1636,16 +1634,16 @@ end
 
 car = Car.new
 car.accelerate # Polymorphism through inheritance from the superclass
-  
+
 bike = Motorbike.new
 bike.accelerate # Polymorphism through inheritance due to method overriding
 ```
 
-In the above example we can see that the classes `Car` and `Motorbike` both inherit from the class `Vehicle`.  In `line 16 and 20` we are instantiating two objects from their respective classes referenced by the local variable `car` and `bike`. In line 16  the `accelerate` instance method is invoke on the object referenced by `car`. This outputs `"Increase speed by 5 miles an hour!"`. This is because Ruby looks for the method with the same name in the method lookup path and it finds it in the `Vehicle` class and invokes it. 
+In the above example we can see that the classes `Car` and `Motorbike` both inherit from the class `Vehicle`.  In `line 16 and 20` we are instantiating two objects from their respective classes referenced by the local variable `car` and `bike`. In line 16  the `accelerate` instance method is invoke on the object referenced by `car`. This outputs `"Increase speed by 5 miles an hour!"`. This is because Ruby looks for the method with the same name in the method lookup path and it finds it in the `Vehicle` class and invokes it.
 
- In `line 20` the `accelerate` instance method is invoke on the object referenced by `bike`. This outputs `"Increase speed by 10 miles an hour!"`.  The `accelerate` method in the `Motorbike` class overrides the one in the `Vehicle` class. Since method overriding is a form of inheritance this phenomenon is also known as `Polymorphism by inheritance`. 
+ In `line 20` the `accelerate` instance method is invoke on the object referenced by `bike`. This outputs `"Increase speed by 10 miles an hour!"`.  The `accelerate` method in the `Motorbike` class overrides the one in the `Vehicle` class. Since method overriding is a form of inheritance this phenomenon is also known as `Polymorphism by inheritance`.
 
-When object of unrelated classes respond to the invocation of the instance method with the same name then this is known as `Polymorphism through Duck Typing`. 
+When object of unrelated classes respond to the invocation of the instance method with the same name then this is known as `Polymorphism through Duck Typing`.
 
 ```ruby
 class Car
@@ -1654,7 +1652,7 @@ class Car
   end
 end
 
-class Motorbike 
+class Motorbike
   def accelerate
     puts "Increase speed by 10 miles an hour!"
   end
@@ -1667,13 +1665,13 @@ vehicle.each { |object| object.accelerate }
 # => Increase speed by 10 miles an hour!
 ```
 
-In the above example the `Car` and `Motorbike` are two unrelated classes. Both of them have their own implementation of the instance method `accelerate`. Hence in line 14 when the objects created from both the classes are passed in as arguments to the `each` method invocation. They both respond to the `accelerate` instance method invocation with their own implementation. This is an example of `Polymorphism through Duck Typing`. 
+In the above example the `Car` and `Motorbike` are two unrelated classes. Both of them have their own implementation of the instance method `accelerate`. Hence in line 14 when the objects created from both the classes are passed in as arguments to the `each` method invocation. They both respond to the `accelerate` instance method invocation with their own implementation. This is an example of `Polymorphism through Duck Typing`.
 
 ### Example 33 - Encapsulation
 
 What is encapsulation and why is it important in Ruby? Give an example
 
-Ruby creates objects and exposes the interfaces to interact with those objects. Due to this it is possible that the data could be unintentionally modified. Also this can also increase the dependencies between different objects. Ruby enables us to hide the behaviour and its implementation by making it not visible to the rest of the code  in order to reduce dependencies and to prevent the data from being exposed to unwanted parts of the code. This is known as `Encapsulation` and this is acheived through the use of `Method Access Control` or access modifiers which determines if the methods are `public, private or protected`. All public instance methods are accessible from outside of the class if the method name is known. In ruby all the instance methods are public by default unless we implement method access control. The exception being the constructor method `initialize` which is always private. 
+Ruby creates objects and exposes the interfaces to interact with those objects. Due to this it is possible that the data could be unintentionally modified. Also this can also increase the dependencies between different objects. Ruby enables us to hide the behaviour and its implementation by making it not visible to the rest of the code  in order to reduce dependencies and to prevent the data from being exposed to unwanted parts of the code. This is known as `Encapsulation` and this is acheived through the use of `Method Access Control` or access modifiers which determines if the methods are `public, private or protected`. All public instance methods are accessible from outside of the class if the method name is known. In ruby all the instance methods are public by default unless we implement method access control. The exception being the constructor method `initialize` which is always private.
 
 **note**: All the attributes within the class are encapsulated by default. In order to overcome this the getter methods are defined to access them.
 
@@ -1682,18 +1680,18 @@ Example
 ```ruby
 class Student
   attr_reader :name
-  
+
   def initialize(name, age)
     @name = name
     @age = age
   end
-  
+
   def student_age
     age
   end
-  
-  private 
-  
+
+  private
+
   attr_reader :age
 end
 
@@ -1704,7 +1702,7 @@ p bob.student_age  # => 19
 p bob.age          # => NoMethodError
 ```
 
-The above example we have hidden the implementation details of the instance method `age` from being accessed from outside of the class. This was acheived by the use of the `private` method which is an access modifier. Hence the instance method `age` can only accessed from the within the `Student` class. 
+The above example we have hidden the implementation details of the instance method `age` from being accessed from outside of the class. This was acheived by the use of the `private` method which is an access modifier. Hence the instance method `age` can only accessed from the within the `Student` class.
 
 ### Example 34 - Mixing vs Inheritance - code exp
 
@@ -1758,20 +1756,20 @@ p kitty.walk
 
 On `line 40` the `walk` instance method is invoked on the local variable `mike` referencing the instance of the class `Person` it ouputs and returns `"Mike strolls forward"`
 
-On `line 43` the `walk` instance method is invoked on the local variable `kitty` referencing the instance of the class `Cat` it ouputs and returns `"Kitty saunters forward"`. 
+On `line 43` the `walk` instance method is invoked on the local variable `kitty` referencing the instance of the class `Cat` it ouputs and returns `"Kitty saunters forward"`.
 
 It makes sense to use a module `Walkable` to mixin the instance method `walk` in the both the classes. This is because both the classes have their own unique state with the `@name` instance variable referencing different values and they also have their own implementation of the private instance method `gait` which is interpolated in the string within the `walk` instance method. If we were to inherit `walk` from the superclass then we will not be able to manipulate the instance method in a simillar fashion.
 
-### Example 35 
+### Example 35
 
-#### OOP ? 
+#### OOP ?
 
 \# What is Object Oriented Programming, and why was it created? What are the benefits of OOP, and examples of problems it solves?
 
 * OOP was created to reduce dependencies.
 * Programmers wanted to created a way to section of certain areas of code and to work and manipulate them without affecting the rest of the code.
 * Helps us to think in a more abstract fasion about the code currently written.
-* It was created to keep the code `DRY` (Don't Repeat Yourself). That is it helps in preventing duplication of the code. 
+* It was created to keep the code `DRY` (Don't Repeat Yourself). That is it helps in preventing duplication of the code.
 * We are able to build application at a faster pace due to large code reusability from  pre-written code.
 * Easier to manage the complexity of the software.
 * Easier to conceptualize objects as real life objects.
@@ -1817,7 +1815,7 @@ In line 7 we are instantiating a new object of the `Person` class and it encapsu
 * modules have a `has-a` relationship hence they are used for namespacing and grouping commom behaviours to be shared.
 * Classes have a `is-a` relationship hence it is useful for cerating objects.
 
-A subclass inherits the behaviours from a superclass. The subclass is the derived class and the super class is the base class. The superclass has a larger reusability and the subclass has an extended or refined implementation. This reduces complexity of the code and makes it reusable. Class Inheritance displays `Is - A` relationship. 
+A subclass inherits the behaviours from a superclass. The subclass is the derived class and the super class is the base class. The superclass has a larger reusability and the subclass has an extended or refined implementation. This reduces complexity of the code and makes it reusable. Class Inheritance displays `Is - A` relationship.
 
 ```ruby
 class Mammal # superclass
@@ -1921,7 +1919,7 @@ The **order** in which Ruby inspects different classes when a method is invoked 
 
 On `line 25` the instance method `fly` is invoked on the object referenced by `pingu` which is created from the `Penguin` class. Now Ruby will look for `fly` within the method lookup path of the class `Penguin` if it cannot find it within the `Penguin` class. It will first look in the mixed in modules in an ascending order i.e in `Migration` and then followed by `Aquatic`. Since it cant find `fly` in either of them and there are no more modules mixin taking place Ruby with look in the class inheritance hierarchy. Since `Penguin` inherits from the superclass `Bird` it will look inside of it and doesnt find it. Hence `line 25` will raise a `NoMethodError`.
 
-This can be verified by calling the `ancestors` mehtod on the object's class to get the method lookup path. 
+This can be verified by calling the `ancestors` mehtod on the object's class to get the method lookup path.
 
 ```ruby
 p pingu.class.ancestors
@@ -1957,7 +1955,7 @@ daisy = Cow.new("Daisy")
 daisy.speak
 ```
 
-In line 22 the `speak` instance method is invoked on the object of the `Cow` class.  This outputs `"Daisy says moooooooooooo!"`. Ruby looks in the method lookup path of the `Cow` class and finds `speak` in the `Animal` class. Within the method definition of `speak` we have the expression `puts sound`. Now Ruby looks for the `sound` instance method within the method lookup path of the `Cow` class and finds it. Within the method definition of `sound` we have the `super` keyword in line 17. `super` is a keyword used by Ruby to invoke a method with the same name within the method lookup path. When we invoke a method which has a super keyword, Ruby looks in the method lookup path to find another method with the same name. Ruby invokes the method when it finds it. Hence the expression `super + "moooooooooooo!"` resolves as `"#{@name} says " + "moooooooooooo!"` after the `super` finds `sound` in `line 10 - 13` from the `Animal` class. 
+In line 22 the `speak` instance method is invoked on the object of the `Cow` class.  This outputs `"Daisy says moooooooooooo!"`. Ruby looks in the method lookup path of the `Cow` class and finds `speak` in the `Animal` class. Within the method definition of `speak` we have the expression `puts sound`. Now Ruby looks for the `sound` instance method within the method lookup path of the `Cow` class and finds it. Within the method definition of `sound` we have the `super` keyword in line 17. `super` is a keyword used by Ruby to invoke a method with the same name within the method lookup path. When we invoke a method which has a super keyword, Ruby looks in the method lookup path to find another method with the same name. Ruby invokes the method when it finds it. Hence the expression `super + "moooooooooooo!"` resolves as `"#{@name} says " + "moooooooooooo!"` after the `super` finds `sound` in `line 10 - 13` from the `Animal` class.
 
 The super keywords can also take arguments. But by default it will pass all the arguments passed into the calling method to the other method with the same name. In order to avoid this we can call the super keyword with a parenthesis such as `super()`.
 
@@ -1985,7 +1983,7 @@ max = Cat.new("Max", "tabby")
 molly = Cat.new("Molly", "gray")
 ```
 
-`max` has the state `@name="Max", @coloring="tabby"` and `molly` has the state `@name="Molly", @coloring="gray"`. Therefore we can see that both `molly` and `max` which are instances of the same object have different states. This is because in Ruby the objects ,which are created from the class, encapsulate the state and the behaviours are defined by the classes. The objects are unique and their states are specific to them. However both the objects have the same behaviour as they are defined in the class they are created from. 
+`max` has the state `@name="Max", @coloring="tabby"` and `molly` has the state `@name="Molly", @coloring="gray"`. Therefore we can see that both `molly` and `max` which are instances of the same object have different states. This is because in Ruby the objects ,which are created from the class, encapsulate the state and the behaviours are defined by the classes. The objects are unique and their states are specific to them. However both the objects have the same behaviour as they are defined in the class they are created from.
 
 ### Example 43
 
@@ -1997,7 +1995,7 @@ class Student
     @name = name
     @grade = nil
   end
-  
+
   def change_grade(new_grade)
     grade = new_grade
   end
@@ -2005,7 +2003,7 @@ end
 
 priya = Student.new("Priya")
 priya.change_grade('A')
-priya.grade 
+priya.grade
 ```
 
 \# In the above code snippet, we want to return `”A”`. What is actually returned and why? How could we adjust the code to produce the desired result?
@@ -2042,7 +2040,7 @@ i = MeMyselfAndI.new
 
 The `self` keyword is an explicit caller. The `self` keyword represents the `class` or the `object` of a class depending upon the scope where it is used.  
 
-In line 2 `self` represents the class `MeMyselfAndI` as it is defined in the scope of the class. In line 4 `self` is used while defining a class method `me`.  Here `self` represents the class `MeMyselfAndI`. There for line 4 - 5 can also be written as 
+In line 2 `self` represents the class `MeMyselfAndI` as it is defined in the scope of the class. In line 4 `self` is used while defining a class method `me`.  Here `self` represents the class `MeMyselfAndI`. There for line 4 - 5 can also be written as
 
 ```ruby
 def MeMyselfAndI.me
@@ -2064,7 +2062,7 @@ class Student
 
   def initialize(name, grade=nil)
     @name = name
-  end 
+  end
 end
 
 ade = Student.new('Adewale')
@@ -2080,7 +2078,7 @@ class Student
   def initialize(name, grade=nil)
     @grade = grade
     @name = name
-  end 
+  end
 end
 
 ade = Student.new('Adewale')
@@ -2091,7 +2089,7 @@ Now line 11 will return the desired output. This demonstrates that the instance 
 
 ### Example 46
 
-\# What is output and returned, and why? What would we need to change so that the last line outputs `”Sir Gallant is speaking.”`? 
+\# What is output and returned, and why? What would we need to change so that the last line outputs `”Sir Gallant is speaking.”`?
 
 ```ruby
 class Character
@@ -2113,15 +2111,15 @@ class Knight < Character
 end
 
 sir_gallant = Knight.new("Gallant")
-p sir_gallant.name 
-p sir_gallant.speak 
+p sir_gallant.name
+p sir_gallant.speak
 ```
 
 Line 20 when the `name` is invoked on the `sir_gallant` object it   outputs `"Sir Gallant"`. Line 21 when the `speak` is invoked on the `sir_gallant` object it   outputs `"Gallant is speaking"`. This is because we are using the instance variable `@name` . If we change this to the getter method `name` then the last line outputs `"Sir Gallant is speaking."`.
 
 ### Example 47
 
-\# What is output and why? 
+\# What is output and why?
 
 ```ruby
 class FarmAnimal
@@ -2150,7 +2148,7 @@ end
 
 p Sheep.new.speak
 p Lamb.new.speak
-p Cow.new.speak 
+p Cow.new.speak
 ```
 
 Line 25, 26, and 27 when the `speak` instance method is invoked on the instance of the class `Sheep, Lamb and Cow` it outputs a string with the object interpolated instead of the class name on seperate lines. This is because with the body of the instance method `speak` within the `FarmAnimal` class we have the expression `"#{self} says "`. Here `self` evaluates to the calling object. Inorder to fix this the `class` method should be invoked on `self` as follows.
@@ -2161,7 +2159,7 @@ def speak
 end
 ```
 
-Now the last three lines output 
+Now the last three lines output
 
 `"Sheep says baa!"`
 `"Lamb says baa!baaaaaaa!"`
@@ -2191,11 +2189,11 @@ fluffy = Cat.new("Fluffy", sara)
 
 Collaborator objects are custom objects that are assigned to the state of another object. This way we can form associations between the two objects. Thereby making the methods of the collaborator object available to the other object
 
-In the above code the object referenced by the local variable `sara` created from the `Person` class is stored as a state of the object `fluffy`. In `fluffy` the object `sara` is assigned to the instance variable `@owner` when the object referenced by the local variable `fluffy` is instantiated from the `Cat` class. 
+In the above code the object referenced by the local variable `sara` created from the `Person` class is stored as a state of the object `fluffy`. In `fluffy` the object `sara` is assigned to the instance variable `@owner` when the object referenced by the local variable `fluffy` is instantiated from the `Cat` class.
 
 Here the object referenced by `sara` is the collaborator object which makes it's behaviours availabe to the object `fluffy`.
 
-### Example 49 
+### Example 49
 
 \# What methods does this `case` statement use to determine which `when` clause is executed?
 
@@ -2209,9 +2207,9 @@ when 40..49     then 'third'
 end
 ```
 
-The case statement uses the `===` method explicitly. The calling object is treat as a group and checks if the argument is part of the group. 
+The case statement uses the `===` method explicitly. The calling object is treat as a group and checks if the argument is part of the group.
 
-### Example 50 
+### Example 50
 
 \# What are the scopes of each of the different variables in the above code?
 
@@ -2242,7 +2240,7 @@ The constant `TITLES` initialized in the line 2 is available throught the class 
 * The application must compute the total cost of the order.
 
 1. Identify the nouns and verbs we need in order to model our classes and methods.
-2.  Create an outline in code (a spike) of the structure of this application. 
+2.  Create an outline in code (a spike) of the structure of this application.
 3. Place methods in the appropriate classes to correspond with various verbs.
 
 ```ruby
@@ -2258,22 +2256,22 @@ The constant `TITLES` initialized in the line 2 is available throught the class 
 
 class Order
   attr_reader :customer
-  
+
   def initialize(customer)
     @customer = customer
   end
-  
+
   def to_s
     puts "The total cost is £#{customer.order.sum} for the following items:"
     puts customer.items
     ""
   end
-  
+
 end
 
 class Meal
   attr_reader :burger, :side, :drink
-  
+
   def initialize
     @burger = 4.50
     @side = 1.50
@@ -2283,20 +2281,20 @@ end
 
 class Customer
   attr_reader :meal, :order, :items
-  
+
   def initialize
     @order = []
     @items = []
     @meal = Meal.new
   end
-  
+
   def items_ordered(item, select)
     if item
       order << select
       items << item
     end
   end
-  
+
   def choose(burger=nil, side=nil, drink=nil)
     items_ordered(burger, meal.burger)
     items_ordered(side, meal.side)
@@ -2334,33 +2332,33 @@ Another take on the code spike this time with a more detailed implementation
   meals have cost
 =end
 
-module Display 
+module Display
   def display_error
     puts "Invalid selection! Please choose numbers 1, 2 or 3. Try again!"  
   end
-  
+
   def list(food)
-    food.each do |num, item| 
-      puts "#{num}. #{item.first}: £#{item.last}." 
+    food.each do |num, item|
+      puts "#{num}. #{item.first}: £#{item.last}."
     end
   end
 end
 
 class Restaurant
   attr_reader :customer
-  
+
   def initialize(customer)
     @customer = customer
   end
-  
+
   def total
     customer.print_selection.map { |food| food.last }.sum
   end
-  
+
   def final
     puts "#{customer.name} has ordered a meal combo consisting of:"
     customer.print_selection.each { |food| puts "#{food.first} for £#{food.last}." }
-    puts "The total amount due is £#{total}." 
+    puts "The total amount due is £#{total}."
   end
 end
 
@@ -2368,12 +2366,12 @@ class Customer
   include Display
 
   attr_accessor :name, :order
-  
+
   def initialize(name)
     @name = name
     @order = Orders.new
   end
-  
+
   def prompt(food)
     choice = 0
     loop do
@@ -2383,23 +2381,23 @@ class Customer
       break if [1, 2, 3].include? choice
       display_error
     end
-    
+
     choice
   end
-  
+
   def food_selected(food)
     item = food
     choice = prompt(food)
     order.selection << item[choice]
     puts
   end
-  
+
   def order_food
     food_selected(order.meal.burger)
     food_selected(order.meal.sides)
     food_selected(order.meal.drinks)
   end
-  
+
   def print_selection
     order.selection
   end
@@ -2407,7 +2405,7 @@ end
 
 class Orders
   attr_reader :meal, :selection
-  
+
   def initialize
     @meal = Meal.new
     @selection = []
@@ -2416,7 +2414,7 @@ end
 
 class Meal
   attr_reader :burger, :sides, :drinks
-  
+
   def initialize
     @burger = { 1 => ["Cheese Burger", 6], 2 => ["Chicken Burger", 4], 3 => ["Veggie Burger", 3] }
     @sides = { 1 => ["Onion Rings", 2], 2 => ["Chicken Wings", 3], 3 => ["Potato Wedges", 1] }
@@ -2474,7 +2472,7 @@ module Display
   def prompt_select
     puts "Please select from one of the following using 1, 2, 3."
   end
-  
+
   def raise_warning
     puts "Invalid selection!. Please try again (1, 2, or 3)."
   end
@@ -2482,23 +2480,23 @@ end
 
 class Order
   attr_reader :customer_order, :cost
-  
+
   def initialize
     @customer_order = {}
     @cost = []
   end
-  
+
   def customer_selection(food)
     customer_order[food[0]] = food[1]
   end
-  
+
   def total
     customer_order.each do |_, price|
       cost << price.chars.map(&:to_i).sum
     end
     cost.sum
   end
-  
+
   def amount_due
     puts
     puts "The following was ordered:"
@@ -2511,20 +2509,20 @@ end
 
 class Meal
   attr_reader :burger, :side, :drink
-  
-  def initialize 
+
+  def initialize
     @burger = [["Cheese Burger", "£7"], ["Chicken Burger", "£6"], ["Veggie Burger", "£4"]]
     @side = [["Onion Rings", "£1"], ["Chicken Wings", "£2"], ["Potato Wedges", "£2"]]
     @drink = [["Spring Water", "£1"], ["Fanta", "£1"], ["Sprite", "£1"]]
   end
-  
+
   def list(food)
     food.each_with_index do |(item, cost), idx|
       puts "#{idx + 1}). #{item}: #{cost}"
     end
     puts
   end
-  
+
   def display_menu
     puts "Please have a look at out Meal menu."
     list(burger)
@@ -2537,12 +2535,12 @@ class Customer
   include Display
 
   attr_reader :meal, :order
-  
+
   def initialize
     @meal = Meal.new
     @order = Order.new
   end
-  
+
   def choose(food)
     choice = 0
     loop do
@@ -2552,15 +2550,15 @@ class Customer
       break if [1, 2, 3].include? choice
       raise_warning
     end
-    
+
     choice - 1
   end
-  
+
   def selects_food
     meal.display_menu
     [choose(meal.burger), choose(meal.side), choose(meal.drink)]
   end
-  
+
   def order_food
     food = [meal.burger, meal.side, meal.drink]
     counter = 0
@@ -2624,7 +2622,7 @@ bob.order_food
 # The amount due now is £8
 ```
 
-### Example 52 
+### Example 52
 
 \# In the `make_one_year_older` method we have used `self`. What is another way we could write this method so we don't have to use the `self` prefix? Which use case would be preferred according to best practices in Ruby, and why?
 
@@ -2643,7 +2641,7 @@ class Cat
 end
 ```
 
-The otherway we can write this method so we dont have to use the `self` prefix is by reassigning the `@age` instance variable directly in `line 10`. 
+The otherway we can write this method so we dont have to use the `self` prefix is by reassigning the `@age` instance variable directly in `line 10`.
 
 ```ruby
 def make_one_year_older
@@ -2662,9 +2660,9 @@ class Student
     @name = name
     @grade = grade
   end
-  
+
   private
-  
+
   attr_writer :grade
 end
 
@@ -2693,9 +2691,9 @@ bobs_car = Car.new
 bobs_car.drive
 ```
 
-Line 11 will raise an error because the `drive` instance method is nor defined in both the module and the class. Instead a module method `drive` is defined in the method definition from the `line 2 to 3` where the `self` keyword represents the module `Drivable`. In order to overcome this and output the desired results we can define the `drive` instance method without invoking it on the `self` keyword within the `Drivable`. 
+Line 11 will raise an error because the `drive` instance method is nor defined in both the module and the class. Instead a module method `drive` is defined in the method definition from the `line 2 to 3` where the `self` keyword represents the module `Drivable`. In order to overcome this and output the desired results we can define the `drive` instance method without invoking it on the `self` keyword within the `Drivable`.
 
-Example 
+Example
 
 ```ruby
 module Drivable
@@ -2741,11 +2739,11 @@ class House
   def initialize(price)
     @price = price
   end
-  
+
   def >(other)
     price > other.price
   end
-  
+
    def <(other)
     price < other.price
   end
