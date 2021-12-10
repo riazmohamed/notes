@@ -490,7 +490,7 @@ In the expectation/spec-style syntax we have a `describe` block which groups the
 
 ## Refutations
 
-The opposite of assertions is refutations. Instead of `refute` they `assert`.
+The opposite of assertions is refutations. Instead of `assert` they `refute`.
 
 ## SEAT approach
 
