@@ -424,6 +424,47 @@ p reduce([[1, 2], ['a', 'b']]) { |acc, value| acc + value } # => [1, 2, 'a', 'b'
 
 In `line 2` we are creating a copy of the array object by calling the method `clone` because if the conditional in `line 3` evalutates to `true` then the expression `array.shift` will permanently modify the original `array` calling collection by removing the first element and returning it. This will cause the return values of the other test cases to behave in an unexpected way.
 
+## Symbol #to_proc
+
+1. reference - [explaination 1](https://blog.pjam.me/posts/ruby-symbol-to-proc-the-short-version/)
+
+```ruby
+a_proc = proc { |a, b, c| p a, b, c }
+a_proc.call(1, 2, 3)
+# => 1
+# => 2
+# => 3
+
+a1_proc = proc { |x| p x.even? }
+a1_proc.call(1)
+# => false
+
+a2_proc = :even?.to_proc
+p a2_proc.call(2)
+# => true
+```
+
+In `Line 11` in the expression `:even?.to_proc` we are creating a `Proc` object using the `Symbol#to_proc` method. This is same as the expression `proc { |x| p x.even? }`. The `Symbol` class has a `to_proc` method.
+
+in the expression `[1, 2, 3, 4].map(&:to_s)` `to_proc` from the `Symbol` class returns a simple `Proc` which sends the symbol(self) to the object yielded by the enumerator.
+
+```ruby
+class Test
+  def self.to_proc
+    proc { puts "What are you doing?" }
+  end
+end
+
+def a_method(&block)
+  block.call
+end
+
+a_method(&Test)
+# => "What are you doing?"
+```
+
+In the expression `a_method(&Test)` we are passing our custom `Test` class as an explicit block during the `a_method` invocation. Since it has a `#to_proc` class method within the class, the expression in line 8 `block.call` executes and this outputs `"What are you doing?"`
+
 # Testing
 
 ## Minitest
