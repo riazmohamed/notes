@@ -5,10 +5,10 @@
 Closures are "chunk of code" that can be saved and passed around to be executed at a later stage. There are three main ways to implement **closures** in Ruby. They are:-
 
 1. Through an object created from the `Proc` class
-2. a `lambda` or 
+2. a `lambda` or
 3. a block
 
-## 2. What is binding? 
+## 2. What is binding?
 
 When a closure is created it **binds** to the surrounding artifacts such as variables, methods, objects, etc. Thereby creating an enclosure. Now the closure or the `chunk of code` remembers and retains the references to these artifacts from the time of its creation.
 
@@ -44,14 +44,14 @@ student { puts "I am a student" } #==> "I am a student"
 
 ### LocalJumpError
 
-When we invoke a method without a block passed in as an argument,  which has the keyword `yield` in its method implementation we get an error known as `LocalJumpError`. We can use the `Kernel#block_given?` inconjunction with an `if` statement inorder overcome this error. 
+When we invoke a method without a block passed in as an argument,  which has the keyword `yield` in its method implementation we get an error known as `LocalJumpError`. We can use the `Kernel#block_given?` inconjunction with an `if` statement inorder overcome this error.
 
 ### Code Explaination - Yielding with an argument
 
 ```ruby
 # method implementation
 def student(name)
-  yield(name) if block_given? 
+  yield(name) if block_given?
 end
 
 # method invocation
@@ -73,7 +73,7 @@ When extra arguments are passed to a block they are ignored. All uninitialized b
 
 ## 6. What is Arity in Ruby?
 
-In Ruby Arity is the rule which defines the number of arguments that you can pass to the `Proc` object, `lambda` or the block.  The blocks and `procs` have **lenient arity** where the argument count is not enforced and hence no error is raised if we pass in more or less arguments than required.  The methods and `lambda`s have a **strict arity** where the argument count is enforced, which means that we have to pass in the same amount of arguments as defined. 
+In Ruby Arity is the rule which defines the number of arguments that you can pass to the `Proc` object, `lambda` or the block.  The blocks and `procs` have **lenient arity** where the argument count is not enforced and hence no error is raised if we pass in more or less arguments than required.  The methods and `lambda`s have a **strict arity** where the argument count is enforced, which means that we have to pass in the same amount of arguments as defined.
 
 ## 7. Blocks use cases
 
@@ -136,14 +136,14 @@ scope of the block and its surrounding artifacts
 
 ```ruby
 def for_each_in(arr)
-  arr.each { |element| yield element } 
+  arr.each { |element| yield element }
 end
 
 arr = [1, 2, 3, 4, 5]
 results = [0]
 
 for_each_in(arr) do |number|
-  total = results[-1] + number 
+  total = results[-1] + number
   results.push(total)
 end
 
@@ -152,7 +152,7 @@ p results
 here the local variable results is available inside of the method `for_each_in` though the results local variable is initialized outside of the method. This is facilated through the closure.
 
 ```ruby
-def sequence 
+def sequence
   counter = 0
   Proc.new { counter += 1 } # here the Proc object forms a closure with the local variable counter.
 end
@@ -160,7 +160,7 @@ end
 
 s1 = sequence # following three methods are called on the same instance of the sequence method
 p s1.call # 1 the proc object in all of the s1 sequence have their own private copy of the method local variable counter
-p s1.call # 2 
+p s1.call # 2
 p s1.call # 3
 puts
 
@@ -279,9 +279,9 @@ p each([1, 2, 3]) { |num| puts num }
 # => [1, 2, 3]
 ```
 
-### LS Implementation 
+### LS Implementation
 
-```ruby 
+```ruby
 def each(array)
   counter = 0
 
@@ -401,7 +401,7 @@ end
 
 ### Add additional functionality
 
-```ruby 
+```ruby
 def reduce(array, starting_value=nil)
   array = array.clone
   starting_value = array.shift if starting_value == nil
@@ -422,7 +422,7 @@ p reduce(['a', 'b', 'c']) { |acc, value| acc += value }     # => 'abc'
 p reduce([[1, 2], ['a', 'b']]) { |acc, value| acc + value } # => [1, 2, 'a', 'b']
 ```
 
-In `line 2` we are creating a copy of the array object by calling the method `clone` because if the conditional in `line 3` evalutates to `true` then the expression `array.shift` will permanently modify the original `array` calling collection by removing the first element and returning it. This will cause the return values of the other test cases to behave in an unexpected way. 
+In `line 2` we are creating a copy of the array object by calling the method `clone` because if the conditional in `line 3` evalutates to `true` then the expression `array.shift` will permanently modify the original `array` calling collection by removing the first element and returning it. This will cause the return values of the other test cases to behave in an unexpected way.
 
 # Testing
 
@@ -430,13 +430,13 @@ In `line 2` we are creating a copy of the array object by calling the method `cl
 
 Common types of testing used by the Ruby community
 
-1. Minitest - aka (Unit testing) 
+1. Minitest - aka (Unit testing)
    - Used to be distributed with ruby
    - simpler and straight forward syntax. It's just Ruby
-   - can do everything RSpec can do 
+   - can do everything RSpec can do
    - not a **DSL** domain specific language
    - Can use a DSL
-2. RSpec 
+2. RSpec
    - Is a **DSL** (Domain specific language) for writing tests
    - Reads like natural English
 
@@ -502,3 +502,28 @@ The 4 steps to run any test.
 * Tear down - clean up any artifacts which are lingering.
 
 The `setup` method is invoked before each test and the `teardown` method is invoked after running every test.
+
+## Testing Equality
+
+Testing for equality
+
+value equality - We check for the values to be equal using the assertion `assert_equal`
+
+strict object equality - We check if the objects being compared are the same
+
+![testing_equality](assets/testing_equality.jpeg)
+
+## Code Coverage
+
+Code coverage depicts the percentage of the code that is covered and tested by our test suite. When the code coverage is 100% it does not mean that the program is running flawlessly or all the edge cases are taken care off. Instead it means that there is a test available for all the methods that are present within the application being tested. Though it is not perfect we can use code coverage to measure the quality of the code being tested. Here we will install a gem called `simplecov` using the command `gem install simplecov`. Then we insert the following code at the beginning of the test file
+
+```ruby
+require 'simplecov'
+SimpleCov.start
+```
+
+When we run the test file for the next time a new directory is generated in the file system called `coverage`. Within which there will be a file with name `index.html` which will display the code coverage data. Add more tests if you need to increase the code coverage based on the project requirements.![image-20211211114025252](assets/CCoverage.png)
+
+![code_coverage](assets/code_coverage.jpeg)
+
+# Packaging code into a project
